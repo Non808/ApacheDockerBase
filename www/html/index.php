@@ -56,4 +56,3 @@
   $con->close();
 ?>
 
-Test
