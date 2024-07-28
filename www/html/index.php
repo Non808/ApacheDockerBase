@@ -20,12 +20,14 @@
 
   $con = connect();
   $sql = "SELECT * FROM Users";
+  $result = $con->query($sql);
 
   if ($result->num_rows == 0) {
-        error("Actor does not exist in our records.");
+        error("Records are empty");
   }
 
   $info = [
+  		'id' => [],
           'name' => [],
 	  'cringeFactor' => [],
   ];
@@ -36,6 +38,7 @@
           foreach ($keys as $key) {
                   array_push($info[$key], $row[$key]);
           }
+		  
   }
 
 
@@ -43,12 +46,12 @@
   $keys = array_keys($info);
 	
   echo "<table border='1'><tr><th>Name</th><th>Cringe Factor</th></tr>";
-  for ($i=0, $len=$info['name']; $i<$len; $i++) {
-  	echo "<tr><td>".$info['name']."</td><td>".$info['cringeFactor']."</td></tr>";
+  for ($i=0, $len=count($info['name']); $i<$len; $i++) {
+  	echo "<tr><td>".$info['name'][$i]."</td><td>".$info['cringeFactor'][$i]."</td></tr>";
   }
 
   echo "</table>";
 
 
-  $conn->close();
+  $con->close();
 ?>

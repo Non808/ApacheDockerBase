@@ -1,4 +1,9 @@
-CREATE USER 'developer'@'%' IDENTIFIED BY "example";
+CREATE USER 'developer'@'localhost' IDENTIFIED BY "example";
+GRANT ALL PRIVILEGES ON *.* TO 'developer'@'localhost' WITH GRANT OPTION;
+
+CREATE USER 'developer'@'%' IDENTIFIED BY 'example';
+GRANT ALL PRIVILEGES ON *.* TO 'developer'@'%' WITH GRANT OPTION;
+
 CREATE DATABASE IF NOT EXISTS Test;
 USE Test;
 CREATE TABLE Users(
