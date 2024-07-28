@@ -1,0 +1,18 @@
+
+services:
+  apache:
+    build: './build/'
+    volumes:
+      - ./www/html/:/var/www/html/
+    ports:
+      - 80:80
+  db:
+    image: mysql/mysql-server:latest
+    volumes:
+      - ./db/:/var/lib/mysql/
+      - ./sql-commands.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+        MYSQL_ROOT_PASSWORD: example
+    ports:
+      - 3306:3306
+
