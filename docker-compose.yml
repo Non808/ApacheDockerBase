@@ -1,6 +1,7 @@
 
 services:
   apache:
+    restart: always
     build: './build/'
     volumes:
       - ./www/html/:/var/www/html/
@@ -8,6 +9,7 @@ services:
       - 80:80
   db:
     image: mysql/mysql-server:latest
+    restart: always
     volumes:
       - ./db/:/var/lib/mysql/
       - ./sql-commands.sql:/docker-entrypoint-initdb.d/init.sql
